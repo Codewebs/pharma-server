@@ -1,0 +1,76 @@
+{
+  "name": "server",
+  "version": "1.0.1",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "prepublishOnly": "npm run build",
+    "wait": "wait-on http://localhost:3000/package.json",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:all": "npm-run-all wait test:browser:* test:node",
+    "test:node": "nyc mocha --exit --bail --require ./scripts/test-helper.js ./tests/*.test.js",
+    "test:browser-tpl": "mocha-headless-chrome -a incognito -a no-sandbox -a disable-setuid-sandbox -t 300000",
+    "test:browser:detect": "npm run test:browser-tpl -- -f ./tests/detect.test.html",
+    "test:browser:recognize": "npm run test:browser-tpl -- -f ./tests/recognize.test.html",
+    "lint": "eslint src"
+  },
+  "browser": {
+    "./src/node/index.js": "./src/browser/index.js"
+  },
+  "author": "LNH",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "bcrypt": "^3.0.2",
+    "body-parser": "^1.18.3",
+    "circular-json": "^0.5.9",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "express-formidable": "^1.2.0",
+    "helmet": "^3.21.2",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.25.3",
+    "mongoose": "^5.9.11",
+    "morgan": "^1.9.1",
+    "mysql": "^2.16.0",
+    "mysql2": "^2.0.0",
+    "node-fetch": "^2.3.0",
+    "node-geocoder": "^3.27.0",
+    "node-php-password": "^0.1.2",
+    "nodemailer": "^6.3.1",
+    "nodemon": "^1.19.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "redis": "^2.8.0",
+    "sequelize": "^5.21.2",
+    "sequelize-cli": "^5.5.1",
+    "sha1": "^1.1.1",
+    "socket.io": "^2.1.1",
+    "swagger-jsdoc": "^3.4.0",
+    "swagger-ui-express": "^4.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/naptha/tesseract.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/naptha/tesseract.js/issues"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "babel-loader": "^8.0.6",
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-react": "^7.11.1",
+    "expect.js": "^0.3.1",
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1"
+  }
+}
