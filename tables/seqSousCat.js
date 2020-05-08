@@ -1,5 +1,5 @@
 var Sequelize = require('sequelize');
-var SousCategoryModel = require('../models/souscategory');
+var SousCategoryModel = require('../models/sousCategory');
 
 const sequelize = new Sequelize(DBase, DBuser, DBpass, {
   host: DBhost,
